@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" type="text/css" href="../css/style1.css"
+    <meta charset="utf-8">
+    <title>简易的入门教程</title>
+</head>
+
+<body>
+
+<div id="标题栏">
+    <h1 style="color:white;left: 12px;text-indent: 50px;line-height: 40px;position: fixed;z-index: 1;position: fixed;">辣条的博客</h1>
+</div>
+
+<div id="侧边栏"> 
+    <ul id="菜单颜色">
+        <li id="菜单项"><a id="菜单项" href="../Linux使用技巧.html">Linux使用技巧</a></li>
+        <li id="菜单项"><a id="菜单项" href="#杂谈">杂谈(建设中)</a></li>
+        <li id="菜单项"><a id="菜单项" href="#其他">其他（建设中）</a></li>
+        <li id="菜单项"><a id="菜单项" href="简易的入门教程.html">GIMP</a></li>
+        <li id="右对齐菜单项"><a id="右对齐菜单项" href="#关于">关于（建设中）</a></li>
+    </ul>
+</div>
+
+<div id="内容背景">
+    <style>
+        img {
+            width: 900px;
+            height: 900px;
+        }
+    </style>
+
+<div class="文章边线">
+    <h2>GIMP介绍</h2>
+</div>
+    <p>   GIMP是GNU图像处理软件的缩写,是完全开源、
+    免费、自由的软件（想了解一下自由软件和GNU可以点<a href="https://www.gnu.org/philosophy/free-sw.html">这里</a>)，
+    因为GIMP完全免费，我们这些没事p点图玩玩的用户使用GIMP就完全够用了，如果使用photoshop正版的话要支付一笔昂贵的授权费用<strong>（3000+RMB）
+    </strong>，使用盗版又需要折腾很长时间，费时费力。GIMP的功能和photoshop高度相似，许多工具只是换了个名字而已（比如仿制图章=克隆工具）
+    ，因此个人用户使用GIMP可以完全可以替代photoshop。</p>
+<div class="文章边线">
+    <h2>GIMP下载和安装</h2>
+</div>
+    <h3>Windows用户</h3>
+
+    <pre><code>去GIMP的官网https://www.gimp.org/下载安装即可，安装时推荐勾选所有组件。</code></pre>
+
+    <h3>macos用户</h3>
+
+    <pre><code>同Windows，去GIMP的官网下载即可</code></pre>
+
+    <h3>Linux用户</h3>
+
+    <h4>deb系</h4>
+
+    <div class="box"> sudo apt-get install gimp</div>
+
+    <h4>Arch系</h4>
+
+    <div class="box"> sudo pacman -S gimp</div>
+
+    <h4>RPM系</h4>
+
+    <div class="box"> sudo yum install gimp</div>
+
+    <h2>GIMP界面介绍</h2>
+
+    <img alt="GIMP的界面" src="GIMP教程/GIMP_SL.jpg"/>
+
+    <h3>1菜单栏</h3>
+
+    <pre><code>这个不用多说</code></pre>
+
+    <h3>2工具栏</h3>
+
+    <pre><code>用来选择工具</code></pre>
+
+    <h3>3工具选项栏</h3>
+
+    <pre><code>用来更改你现在选用的工具的属性</code></pre>
+
+    <h3>4图像处理区</h3>
+
+    <pre><code>用来处理你现在打开的图像，按住ctrl+鼠标滚轮，可以调整图像的大小，按住鼠标中键可以拖动图像，这些操作在你进行细致操作的时候很有用。</code></pre>
+
+    <h3>5附加标签栏</h3>
+
+    <pre><code>可以显示多个辅助标签，例如笔刷风格，字体，历史记录等等</code></pre>
+
+    <h3>6图层栏</h3>
+
+    <pre><code>用来显示当前图像的图层，点击眼睛可以显示/隐藏图层，右键图层可以对其进行一些操作，左键以选择图层，选择图层会自动将选区选中这个图层。</code></pre>
+<br>
+
+<div class="文章边线">
+    <h2>图层的概念（photoshop也适用）</h2>
+</div>
+    <p>图层是图像处理软件的一个<strong>抽象概念</strong>，用来辅助图像处理，大多数的高级图像处理工具都具有图层功能。比喻一下，图层就像是涂了颜料的玻璃板，这些玻璃板叠放在一起，叠放在上层的玻璃板会遮住下面的玻璃板。很通俗易懂吧。</p>
+
+    <h2>GIMP工具介绍-选区类</h2>
+    <h3>矩形选区工具</h3>
+    <p>按矩形来选择选区，拖动选区的四个角可以调整选区的大小，如果对选区不满意，可以按ctrl+shift+a取消掉选区。
+    <img alt="矩形选区" src="GIMP教程/JXXQ.gif"/></p>
+
+    <h3>椭圆选区工具</h3>
+
+    <p>会画出圆形的选区，其他操作和矩形选区工具一样。</p>
+
+    <h3>自由选区工具</h3>
+
+    <p>可以用鼠标来自由绘制选区，也可以绘制多边形的选区，如下图(注意，<strong>选区一定要闭合才能成为选区。</strong>)
+    <img alt="自由选区" src="GIMP教程/ZYXQ.gif"/></p>
+
+    <h3>模糊选择工具</h3>
+
+    <p>点一下即可选中附近颜色相同的区域，在处理颜色分明的图像很有用，但在颜色复杂的图像表现就不尽人意了，如下图。
+    <img alt="模糊选择" src="GIMP教程/MHXQ.gif"/>	</p>
+
+    <h3>按颜色选择工具</h3>
+
+    <p>这个工具和模糊选择工具很像，不同的是，按颜色选择工具会直接选中图像上所有颜色相近的区域，不管是不是连续的，一律选中。而模糊选择工具是按照连续的颜色相同区域选择，不会直接选择整个图像的颜色相近区域。</p>
+
+<div class="文章边线">
+    <h2>选区的几种模式</h2>
+</div>
+
+    <p>选区有4种选择模式（覆盖、合并、减去、相交）,其他的选区工具也适用，下面以矩形选区工具来举例。</p>
+
+    <h4>覆盖模式</h4>
+
+    <p>选区工具默认就是覆盖模式，覆盖模式下再选其他的选区会覆盖之前的选区。如下图
+        <img alt="覆盖模式" src="GIMP教程/FGMS.gif"/>		</p>
+
+    <h4>合并模式</h4>
+
+    <p>按住shift即可进入合并模式，松开回到默认的覆盖模式，合并模式会把之后画出的选区合并到之前的选区，如下图。
+    <img alt="合并模式" src="GIMP教程/HBMS.gif"/>	</p>
+
+    <h4>减去模式</h4>
+
+    <p>按住ctrl即可进入减去模式，减去模式把你之前画出的选区删去，如下图。
+    <img alt="减去模式" src="GIMP教程/JQMS.gif"/>	</p>
+
+    <h4>相交模式</h4>
+
+    <p>按住shift+ctrl会进入相交模式，相交模式会记录多个选区相交的区域，如下图。
+    <img alt="相交模式" src="GIMP教程/XJMS.gif"/> </p>
+
+<div class="文章边线">
+    <h2>一个简单的图像处理</h2>
+</div>
+    <p>在你学会了选区之后，我们就可以正式开始了，下面我将用一个简单的p图流程来介绍一下技巧。</p>
+
+    <h4>我们以这两张图为例子</h4>
+
+    <p><img alt="素材1" src="GIMP教程/素材5.jpg"/> 
+    <img alt="素材2" src="GIMP教程/素材6.png"/> 
+    <strong>下面我们要做的就是把蔡徐坤打篮球P到素材1的电脑屏幕上</strong></p>
+
+    <h4>打开素材图片</h4>
+
+    <p>首先在GIMP的菜单栏选中文件-打开图片，选择2张素材打开，这样2张素材图片就会显示在图像处理区了。</p>
+
+    <h4>处理要p的素材</h4>
+
+    <p><strong>我们先从蔡徐坤打篮球（素材2）入手。</strong>
+    第二张素材是1080P大小，对于素材1来说有些太大了，要先改变一下素材2的大小。
+    在标签页选中素材2,然后选择菜单栏的<strong>图像--缩放图像</strong>将高度改为480。<strong>注意，图像大小选择框要选择像素</strong>，之后选择缩放即可。
+    <img alt="素材7" src="GIMP教程/素材7.png"/>	</p>
+
+    <h4>将素材2移动到素材1上面</h4>
+
+    <p>首先我们在标签页选中素材2,之后按<strong>ctrl+X(剪切)</strong>，之后在标签页选中素材1,再按<strong>ctrl+V</strong>即可把素材2转移到素材1上面了。效果如下图。
+    <img alt="素材8" src="GIMP教程/素材8.png"/>	</p>
+
+    <h4>将浮动选区新建为图层</h4>
+
+    <p>虽然已经将素材2移动到素材1上面了，但这样还不够，看右下角的图层区。素材2是显示为“浮动选区”，浮动选区是无法被编辑的，我们要先把浮动选区建立为图层才行.<strong>在图层区右键浮动选区，点击“到新图层”</strong>，这样就可以编辑这个图层了。</p>
+
+    <h4>编辑素材1</h4>
+
+    <p>将会对你造成阻碍的东西都&quot;拿掉&quot;,比如素材2,还有音响，头发和手。
+    先把素材按隐藏（点击图层区里的眼睛图标）之后再用选区工具将造成阻碍的东西选中，然后用ctrl+X，ctrl+V来建立为新图层，再点击眼睛图标将这些新建的图层隐藏，这样这些都我们造成干扰的东西就被“拿掉”了。效果如下图。
+    <img alt="素材9" src="GIMP教程/素材9.png"/>	</p>
+
+    <h4>将素材2P到显示器上</h4>
+
+    <p>首先让素材2显示（点击图层区的眼睛图标），之后在工具栏找到<strong>统一变换工具</strong>，在图层区域选中素材2。之后就可以用统一变换工具对其进行编辑了。
+    统一变换工具的8个角可以用来缩放图像，点击边角的4个角中的菱形图案可以进行变形操作，具体如下图。
+    <img alt="" src="GIMP教程/TYBH.gif"/>	</p>
+
+    <h4>调整图层顺序</h4>
+
+    <p>接下来我们调整一下图层顺序使素材2显示在，音箱和头发的下面。在图层区域拖动素材2到背景的上方，音箱，头发图层的下方即可，效果如下。
+    <img alt="" src="GIMP教程/素材10.png"/>	</p>
+
+    <h4>后处理</h4>
+
+    <p>p完图之后，难免会出现一些瑕疵，现在处理的图片有一些“白边”，我们将用克隆工具来将其消除
+    <img alt="" src="GIMP教程/素材11.png"/></p>
+
+    <h4>向下合并</h4>
+
+    <p>克隆工具只能克隆同一图层的图像，因此我们要将所有图层合并成一个图像，在图层区右键最上层的图层，点击<strong>向下合并</strong>，这样图层就会跟下面的图层合并了，一直合并到只有一个图层为止。</p>
+
+    <h4>使用克隆工具来修补缺失的部分</h4>
+
+    <p>克隆工具可以将图像的某一部分克隆到图像的另一个地方，通常用来修补缺失的区域。
+    首先在工具栏找到克隆工具，然后用ctrl+左键选中要克隆的图像作为源，然后左键并拖动需要修补的区域，就可以把源上的图像克隆到你要修补的区域了，效果如下图。
+    <img alt="" src="GIMP教程/KLGJ.gif"/></p>
+
+    <h2>最终效果</h2>
+
+    <p><img alt="" src="GIMP教程/完成.jpg"/></p>
+
+<!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC80NDc5Ni8yMTMxNw==">
+    <script type="text/javascript">
+        (function(d, s) {
+            var j, e = d.getElementsByTagName(s)[0];
+    
+            if (typeof LivereTower === 'function') { return; }
+    
+            j = d.createElement(s);
+            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+            j.async = true;
+    
+            e.parentNode.insertBefore(j, e);
+        })(document, 'script');
+    </script>
+    <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+    <!-- City版安装代码已完成 -->
+
+
+
+<!-- 内容背景结尾 -->
+</div>
+
+<div id="底栏">
+    <h3 style="color:white;text-align: center;line-height: 0%;position: relative;">辣条的博客@辣条</h3>
+</div>
+    
+
+</body>

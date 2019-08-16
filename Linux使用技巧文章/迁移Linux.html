@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    <link rel="stylesheet" type="text/css" href="../css/style1.css">
+    <title>辣条的博客</title>
+
+</head>
+
+<body>
+
+<div id="标题栏">
+    <h1 style="color:white;left: 12px;text-indent: 50px;line-height: 40px;position: fixed;z-index: 1;position: fixed;">辣条的博客</h1>
+</div>
+
+<div id="侧边栏"> 
+    <ul id="菜单颜色">
+        <li id="菜单项"><a id="菜单项" href="../Linux使用技巧.html">Linux</a></li>
+        <li id="菜单项"><a id="菜单项" href="#杂谈">杂谈(建设中)</a></li>
+        <li id="菜单项"><a id="菜单项" href="#其他">其他(建设中)</a></li>
+        <li id="菜单项"><a id="菜单项" href="GIMP/简易的入门教程.html">GIMP</a></li>
+        <li id="右对齐菜单项"><a id="右对齐菜单项" href="#关于">关于(建设中)</a></li>
+    </ul>
+</div>
+
+<div id="内容背景">
+    <h1>前言</h1>
+
+    <p>买了新硬盘不必重装系统，将系统搬运到另一块硬盘其实并没有那么难，只需要4步即可。</p>
+    
+    <h1>准备</h1>
+    
+    <p>一个Arch安装U盘或者manjaro安装盘</p>
+    
+    <h1>1-使用dd克隆分区</h1>
+    
+    <p>dd是Linux下的一个非常强大的工具，它可以：</p>
+    <ul>
+    <li>克隆分区</li>
+    <li>备份分区到ISO文件</li>
+    <li>从ISO文件还原分区</li>
+    <li>备份整个硬盘</li>
+    <li>刻录U盘</li>
+    等等。。。。
+    </ul>
+    
+    <p><strong>首先我们查看一下分区设备名</strong>
+    <div class="box">
+    lsblk -f
+    </div>
+    <p><b>请确认：</b></p>
+    <ul>
+    <li>之前的根目录</li>
+    <li>需要克隆到的分区</li>
+    </ul>   
+    <p><strong>使用dd克隆分区</strong></p>
+    
+    <div class="box">dd if=/dev/sdx of=/dev/sdx status=progress</div>
+    
+    <p>if=后面的是你之前的旧根目录</p>
+    
+    <p>of=后面的是你需要克隆到的新分区</p>
+    
+    <p>status=progress</p>
+    
+    <p>用来显示进度的参数，如果不加上，就会像卡住了一样，一点输出都没有，没有这个参数你会很寂寞的。</p>
+    
+    <h1>2-使用Arch安装U盘（ArchISO）来配置系统</h1>
+    
+    <p>如果你有安装Arch Linux的经验，那么你看这部分肯定不会感到陌生，本部分和Arch的安装方法别无二致。</p>
+    
+    <h3>2-1<strong>挂载新分区到/mnt</strong></h3>
+    
+    <p>从U盘启动ArchISO，用<strong>lsblk -f</strong>来确定新分区的设备名，之后使用<strong>mount /dev/sdx /mnt</strong>来将新分区挂载到/mnt下面即可。</p>
+    
+    <h3>2-2<strong>chroot到新挂载的系统</strong></h3>
+    
+    <div class="box">arch-chroot /mnt</div> 
+    
+    <p>这样就进入到你新克隆的系统了。</p>
+    
+    <h1>3<strong></strong>修改fstab</strong></h1>
+    
+    <p>3-1：更换了分区之后，UUID是肯定会变的，一定要修改，否则系统会无法启动。</p>
+    
+    <div class="box"> vim /etc/fstab</div>
+    
+    <p>虽然vim不是必须的，可以用nano替代，但vim在编辑fstab下有高亮，推荐使用。</p>
+    
+    <p>3-2<strong>接下来删掉之前的旧的条目</strong></p>
+    
+    <p>然后加入</p>
+    
+    <div class="box">
+    UUID=你新分区的UUID（请用lsblk -f查看）	/         	ext4      	defaults,rw,relatime,discard	  0 1
+    </div>
+    
+    <p>如果你不是固态硬盘，请去掉discard参数，这个参数主要是为固态硬盘开启Trim使用的，机械硬盘不需要。</p>
+    
+    <h1>4<strong></strong>重新安装GRUB</strong></h1>
+    
+    <p>之前的旧引导项在搬运了分区之后就失效了，因此我们需要重新安装GRUB，虽然你也可以手动编辑之前引导项的cfg，但这样实在是很麻烦，重新安装GRUB的话，相对于手动编辑cfg来说，就很方便了。</p>
+    
+    <h3><strong>Legacy启动</strong></h3>
+    
+    <p>如果你的电脑比较老，或者使用的是MBR分区表，请使用这个方法。</p>
+    
+    <div class="box"> grub-install --target=i386-pc /dev/sdX</div>
+    
+    <p>之后重新生成GRUB配置文件</p>
+    
+    <div class="box">grub-mkconfig -o /boot/grub/grub.cfg</div>
+    
+    <h3><strong>UEFI启动</strong></h3>
+    
+    <p>新电脑或者GPT分区表就用UEFI启动吧，UEFI的启动速度相对于Legacy快很多的。</p>
+    
+    <p><strong>建立ESP分区并挂载</strong>
+    首先用分区工具创建一个256MB大小的fat32分区，并且标记为<strong>ESP/UEFI启动分区</strong></p>
+    
+    <p>随后创建efi目录</p>
+    
+    <div class="box"> mkdir /boot/efi</div>
+    
+    <p>将ESP分区挂载到这里</p>
+    
+    <div class="box">mount /dev/sdx /boot/efi</div>
+    
+    <p><strong>安装GRUB</strong></p>
+    
+    <div class="box">grub-install --target=x86_64-efi --efi-directory=/boot/efi --bootloader-id=随便写</div>
+    
+    <p><strong>生成GRUB配置文件</strong></p>
+    
+    <div class="box">grub-mkconfig -o /boot/grub/grub.cfg</div>
+    
+    <h1>重启</h1>
+    
+    <div class="box">exit</div>
+
+    <br>
+
+    <div class="box">reboot</div>
+    
+    <p>重启之后就大功告成了.</p>
+    
+    <p>如果启动后还是进入之前的根目录，请<strong>格式化</strong>之前的旧分区,之后<strong>重新生成GRUB配置文件</strong></p>
+
+
+    
+<!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC80NDc5Ni8yMTMxNw==">
+        <script type="text/javascript">
+            (function(d, s) {
+                var j, e = d.getElementsByTagName(s)[0];
+        
+                if (typeof LivereTower === 'function') { return; }
+        
+                j = d.createElement(s);
+                j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+                j.async = true;
+        
+                e.parentNode.insertBefore(j, e);
+            })(document, 'script');
+        </script>
+        <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+    </div>
+        <!-- City版安装代码已完成 -->
+
+    <div id="底栏">
+    </div> 
+</div>
+
+       
+    
+</body>
+</html>
+
+

@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    <link rel="stylesheet" type="text/css" href="../css/style1.css">
+    <title>辣条的博客</title>
+
+</head>
+
+<body>
+
+<div id="标题栏">
+    <h1 style="color:white;left: 12px;text-indent: 50px;line-height: 40px;position: fixed;z-index: 1;position: fixed;">辣条的博客</h1>
+</div>
+
+<div id="侧边栏"> 
+    <ul id="菜单颜色">
+        <li id="菜单项"><a id="菜单项" href="../Linux使用技巧.html">Linux</a></li>
+        <li id="菜单项"><a id="菜单项" href="#杂谈">杂谈(建设中)</a></li>
+        <li id="菜单项"><a id="菜单项" href="#其他">其他(建设中)</a></li>
+        <li id="菜单项"><a id="菜单项" href="../GIMP/简易的入门教程.html">GIMP</a></li>
+        <li id="右对齐菜单项"><a id="右对齐菜单项" href="#关于">关于(建设中)</a></li>
+    </ul>
+</div>
+
+<div id="内容背景">
+        
+    <h1>安装fcitx</h1>
+    
+    <p>fcitx是输入法的框架，是必须安装的。安装方法：                 
+    <div class="box"> sudo pacman -S fcitx fcitx-im fcitx-configtool</div>
+    
+    <p>fcitx：这个是输入法的框架，fcitx-im：这个是fcitx的模块<strong>必须全部安装</strong>，fcitx-configtool：fcitx的图形化配置工具。</p>
+    
+    <h2>安装fcitx-qt4</h2>
+    
+    <p>默认fcitx-qt4这个模块是不包括在fcitx-im软件包组里面的，需要手动安装。其他输入法没有fcitx-qt4是可以用的，但搜狗不行。因此必须安装。</p>
+    
+    <h4>手动从AUR 安装</h4>
+    
+    <div class="box">
+    git clone https://aur.archlinux.org/fcitx-qt4.git ~fc
+    <br>
+    cd fc
+    <br>
+    makepkg -si 
+    </div>
+    
+    <h4>用yay安装</h4>
+    
+    <div class="box"> -S fcitx-qt4</div>
+    
+    <h2>安装搜狗输入法</h2>
+    
+    <p>接下来安装搜狗输入法本体</p>
+    
+    <div class="box">yay -S fcitx-sogoupinyin</div>
+    
+    <h2><strong>AUR上搜狗无法安装的解决方法</strong></h2>
+    
+    <h4>添加ArchCN源</h4>
+    
+    <div class="box"> /etc/pacman.conf</div>
+    
+    <p><strong>在里面加入</strong></p>
+    
+    <div class="box">
+    [archlinuxcn]
+    <br>
+    SigLevel = Never
+    <br>
+    Server = https://mirrors.ustc.edu.cn/archlinuxcn/$arch
+    </div>
+    
+    <p><strong>接下来导入密钥</strong></p>
+    
+    <div class="box"> pacman -S archlinuxcn-keyring</div>
+    
+    <p><strong>更新软件源并安装搜狗输入法</strong></p>
+    
+    <div class="box"> pacman -Sy fcitx-sogoupinyin</div>
+    
+    <h2>最后一步，添加环境变量</h2>
+    
+    如果你是使用显示管理器的用户，在~.pam_environment里添加这三行：
+    <div class="box">
+    GTK_IM_MODULE=fcitx
+    <br>                            
+    QT_IM_MODULE=fcitx                                   
+    <br>
+    XMODIFIERS=@im=fcitx
+    </div>
+    如果你是使用startx手动启动桌面环境，那么请将这三行加入~.xinitrc</p>
+    
+    <h2>至此，完成</h2>
+</div>
+
+<div id="底栏">
+    <h3 style="color:white;text-align: center;line-height: 0%;position: relative;">辣条的博客@辣条</h3>
+</div>
+
+</body>
+</html>

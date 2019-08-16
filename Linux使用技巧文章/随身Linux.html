@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta charset="utf-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    <link rel="stylesheet" type="text/css" href="../css/style1.css">
+    <title>辣条的博客</title>
+
+</head>
+
+<body>
+
+<div id="标题栏">
+    <h1 style="color:white;left: 12px;text-indent: 50px;line-height: 40px;position: fixed;z-index: 1;position: fixed;">辣条的博客</h1>
+</div>
+
+<div id="侧边栏"> 
+    <ul id="菜单颜色">
+        <li id="菜单项"><a id="菜单项" href="../Linux使用技巧.html">Linux使用技巧</a></li>
+        <li id="菜单项"><a id="菜单项" href="#杂谈">杂谈</a></li>
+        <li id="菜单项"><a id="菜单项" href="#其他">其他</a></li>
+        <li id="菜单项"><a id="菜单项" href="GIMP/简易的入门教程.html">GIMP</a></li>
+        <li id="右对齐菜单项"><a id="右对齐菜单项" href="#关于">关于</a></li>
+    </ul>
+</div>
+
+<div id="内容背景">
+        <h1>准备</h1>
+
+        <ul><li>一个至少8GB的U盘（最好支持USB3.1，不然速度让你抓狂）。</li><li>一台已经安装了Linux的电脑，或者Arch安装U盘。</li><li>本教程面向于有经验的用户</li></ul>
+        
+        <h1>开始</h1>
+        
+        <p>本文使用的Linux发行版是Arch Linux，这个发行版十分轻量，并且可配置程度高，安装到U盘也能拥有不错的运行速度，推荐使用Arch。</p>
+        
+        <p>本文主要基于Linux客户机环境来安装，如果你使用的是Arch安装镜像，本文也会列出方案。</p>
+        
+        <h2>如果使用Arch ISO安装</h2>
+        
+        <p>请先更新系统时间</p>
+        
+        <div class="box">timedatectl set-ntp true</div>
+        
+        <h1>分区</h1>
+        
+        <p>推荐使用gparted来分区，如果你使用的是Arch ISO，请使用cfdisk或者parted。</p>
+        
+        <p><strong>f2fs可以换成ext4，ext4比较稳定，而f2fs偏向于速度</strong>。</p>
+        
+        <p>如果要使用f2fs，必须要有一个<strong>独立分区的/boot</strong>，否则GRUB会无法读取配置文件（GRUB不支持f2fs）</p>
+        
+        <p><strong>需要的分区</strong>
+        <h4>(GPT分区表)</h4>
+        <ul>
+        <li><p>一个f2fs 根分区 （越大越好）</p></li>
+        <li><p>一个ext4 /boot分区    （256MB即可）</p></li>
+        <li><p>一个ESP分区（UEFI需要）  （256MB即可）</p></li>
+        <li><p>一个BIOS分区（UEFI+legacy需要）   （2MB即可）</p></li>
+        <li><p>一个用于在Windows传输文件的fat32分区（可选。根据自己需求调整大小）  </p></li>
+        </ul>
+        <h2><b>注意</b>在分区时，必须在U盘的最前方预留出1M的空间。MBR分区表也一样。</h2>
+        
+        <p><strong>这是我的分区方案:</strong>
+        <br>
+        <img alt="f1" src="image2/f1.png"/></p>
+        
+        <hr/>
+        
+        <div class="box-waring">以上分区方案适用于较新的电脑，如果你经常接触的是老旧设备，那么请使用以下分区方案</div>
+        
+        <p><strong>需要的分区(MBR分区表)</strong>
+        <ul>
+        <li><p>一个f2fs 根分区 (越大越好)</p></li>
+        <li><p>一个ext4 /boot分区 （256MB即可）</p></li>
+        <li><p>一个用于在Windows传输文件的fat32分区（可选。根据自己需求调整大小）</p></li>
+        </ul>
+        <h1>安装</h1>
+        
+        <p>分区的注意事项介绍完了，安装方法参考<a href="https://wiki.archlinux.org/index.php/Installation_guide_">Arch Wiki</a>即可</p>
+        
+        <h1>需要的额外配置</h1>
+        
+        <p>为了使USBArch可以兼容所有硬件，需要做一些额外的调配。</p>
+        
+        <h2>更改mkinitcpio</h2>
+        
+        首先打开mkinitcpio.conf
+        <br>
+        <br>
+        <div class="box">vim /etc/mkinitcpio.conf</div>
+        
+        <p><b>找到HOOKS=(base udev autodetect modconf block filesystems keyboard fsck) 这行</b></p>
+        
+        <div class="box">将顺序改为HOOKS=(base udev block keyboard autodetect modconf filesystems fsck)</div>
+        
+        <p><strong>为了让设备可以在USB3.x上启动，还需要在MODULES=()里加入：</strong></p>
+        <div class="box"> ext2 xfs dm_mod xhci-hcd</div>
+        
+        <p><strong>之后运行</strong></p>
+        
+        <div class="box">mkinitcpio -p linux</div>
+        
+        <p><b>如果你安装了LTS内核，请运行</b></p>
+        
+        <div class="box">mkinitcpio -p linux-lts</div>
+        
+        <h1>安装GRUB</h1>
+        
+        <h2>使用GPT分区表的方案（适合新电脑）</h2>
+        
+        <p>首先安装需要的软件包</p>
+        
+        <div class="box">pacman -S grub efibootmgr</div>
+        
+        <p>挂载/boot分区(用lsblk -f 来查看/boot分区名字)</p>
+        
+        <div class="box">mount /dev/sdx /boot</div>
+        
+        <p>之后创建efi目录</p>
+        
+        <div class="box">mkdir -p /boot/efi</div>
+        
+        <p>将ESP分区挂载到efi目录（用lsblk -f来查看efi分区名字）</p>
+        
+        <div class="box">mount /dev/sdx /boot/efi</div>
+        
+        <p>将GRUB安装到EFI分区</p>
+        
+        <div class="box">grub-install --target=x86_64-efi 
+            --efiruanjbory=/boot/efi  --removable --recheck</div>
+        
+        <p>安装legacy方式启动的GRUB(可选)</p>
+        
+        <div class="box">grub-install --target=i386-pc /dev/sdXruanjb</div>
+        
+        <p>这样就安装好GRUB了，并且同时兼容UEFI启动和UEFI+legacy
+        但比较老的电脑并不能启动。</p>
+        
+        <h2>使用MBR分区表的方案（适合老电脑）</h2>
+        
+        <p>首先安装需要的软件包</p>
+        
+        <div class="box">pacman -S grub</div>
+        
+        <p>挂载/boot分区(用lsblk -f 来查看/boot分区名字)</p>
+        
+        <div class="box">mount /dev/sdx /boot</div>
+        
+        <p>安装GRUB到MBR</p>
+        
+        <div class="box">grub-install --target=i386-pc /dev/sdX</div>
+        
+        <p>本方式适合所有电脑，但有些比较新的电脑需要将legacy启动支持开启。</p>
+        
+        <h1>必须安装的软件包</h1>
+        
+        <p>安装f2fs文件系统的支持(使用ext4可以跳过)</p>
+        
+        <div class="box">pacman -S f2fs-tools</div>
+        
+        <p>安装NTFS文件系统的支持</p>
+        
+        <div class="box">pacman -S ntfs-3g</div>
+        
+        <h1>安装图形界面</h1>
+        
+        <p>首先安装xorg</p>
+        
+        <div class="box">pacman -S xorg</div>
+        
+        <p>安装lightdm</p>
+        
+        <div class="box">pacman -S lightdm lightdm-gtk-greeter</div>
+        
+        <p>将lightdm设置为开机启动</p>
+        
+        <div class="box">systemctl enable lightdm.service</div>
+        
+        <p>添加一个普通用户</p>
+        
+        <div class="box">useradd -m -G wheel -s /bin/bash 用户名</div>
+        
+        <p>也可以使用startx来手动启用桌面环境，具体请阅读Arch Wiki</p>
+        
+        <p><strong>安装一款桌面环境/窗口管理器</strong></p>
+        
+        <p>如果你经常接触高配电脑,可以安装KDE/GNOME这类重量级桌面环境。</p>
+        
+        <p>如果接触的电脑配置不算太高，或者要追求极致性能，那么我推荐你使用lxde/lxqt。</p>
+        
+        <p>动手能力强的话，可以使用i3wm/openbox/fluxbox来获得更快的速度。</p>
+        
+        <p>至此，完成</p>
+
+
+<!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC80NDc5Ni8yMTMxNw==">
+    <script type="text/javascript">
+        (function(d, s) {
+            var j, e = d.getElementsByTagName(s)[0];
+    
+            if (typeof LivereTower === 'function') { return; }
+    
+            j = d.createElement(s);
+            j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+            j.async = true;
+    
+            e.parentNode.insertBefore(j, e);
+        })(document, 'script');
+    </script>
+    <noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+
+<!-- 内容背景结尾 -->
+</div>
+
+<div id="底栏">
+    <h3 style="color:white;text-align: center;line-height: 0%;position: relative;">辣条的博客@辣条</h3>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" type="text/css" href="../css/style1.css"
+  <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js">
+  </script>
+<script> 
+  $(document).ready(function(){
+  $("#flip").click(function(){
+    $("#panel").slideToggle("slow");
+  });
+});
+</script>
+
+</head>
+
+<body>
+
+<div id="标题栏">
+  <h1 style="color:white;left: 12px;text-indent: 50px;line-height: 40px;position: fixed;z-index: 1;position: fixed;">辣条的博客</h1>
+</div>
+
+<div id="侧边栏"> 
+  <ul id="菜单颜色">
+    <li id="菜单项"><a id="菜单项" href="../Linux使用技巧.html">Linux使用技巧</a></li>
+    <li id="菜单项"><a id="菜单项" href="#杂谈">杂谈</a></li>
+    <li id="菜单项"><a id="菜单项" href="#其他">其他</a></li>
+    <li id="菜单项"><a id="菜单项" href="GIMP/简易的入门教程.html">GIMP</a></li>
+    <li id="菜单项"><a id="菜单项" href="#关于">关于</a></li>
+  </ul>
+</div>
+
+<div id="内容背景">
+<h2>桌面环境的概念</h2>
+<p>在开始之前，你需要了解一下“桌面环境是什么”。简单来说，桌面环境其实就是一套软件，一般由：窗口管理器、面板、合成器等等组成，而openbox只是一个**窗口管理器**，窗口管理器只能管理窗口的状态“开启，关闭”。因此我们需要基于openbox并集成其他软件来打造自己的桌面环境。本教程主要面向于Arch系发行版。</p>
+
+<h2>为什么要选择openbox</h2>
+
+<p>openbox极其轻量，你是否受够了GNOME/KDE的龟速，试试openbox绝对会让你体会到不一样的感受。并且openbox可配置性非常之高，完全可以做到“哪里不爽改哪里”。是否有兴趣？那就让我们向下看吧。</p>
+
+<h2> 1-安装需要的软件包</h2>
+<li>openbox</li>
+<li>xorg-xinit</li>
+<li>lightdm和lightdm-gtk-greeter</li>
+<li>tint2</li>
+<li>breeze和breeze-gtk</li>
+<li>pcmanfm-qt</li>
+<li>compton</li>
+<li>oblogout</li>
+
+<p><b>openbox:</b>这里我们使用openbox作为窗口管理器。</p><br>
+
+<p><b>xorg-xinit:</b>跳过显示管理器，直接用startx来手动启动openbox，用这种方法登录图形界面可以获得最佳的启动速度。</p>
+
+<p><b>lightdm：</b>轻量化的显示管理器，如果你需要还需要其他桌面环境，使用lightdm可以很方便的切换，</p>
+
+<p><b>tint2:</b>十分轻量且可配置性极高的面板，内存占用仅仅只有100m左右，并且几乎不占用CPU。</p>
+
+<p><b>breeze/breeze-gtk:</b>kde5默认的“微风”主题，可以通过pacman直装，十分方便。（可选）</p>
+
+<p><b>pcmanfm-qt：</b>lxqt的默认文件管理器，同时可以用来管理壁纸和桌面图标。</p>
+
+<p><b>compton:</b>一个轻量化的合成器，可以使openbox支持透明和淡入淡出效果(可选)</p>
+
+<p><b>oblogout:</b>用来注销、关机、重启。</p>
+
+<p><b>volti:</b>用来调节音量的托盘图标</p>
+
+<h3> <b>复制粘贴这串代码，一键安装</b><h3>
+
+<div class="box">sudo pacman -S openbox xorg-xinit lightdm lightdm-gtk-greeter tint2 breeze pcmanfm-qt compton oblogout</div>
+
+<p><b>由于volti是AUR应用，所以请去AUR下载安装</b></p>
+
+
+<h2>2-手动启动桌面环境<h2>
+<p>如果你不需要频繁切换其他的桌面环境，那么就用手动的方法来进入openbox吧，可以跳过显示管理器直接进入桌面环境，十分快速。</p>
+
+<h3> 2-1编写.xinitrc<h3>
+<p>在主目录下创建.xinitrc文件</p>
+
+<div class="box">
+vim ~.xinitrc
+</div>
+
+<p><b>在里面写入</b></p>
+
+<div class="box">
+#！/bin/sh      
+<p>export LANG=zh_CN.UTF-8 #这三行用来设定中文</p>
+<p>export LANGUAGE=zh_CN:en_US</p>
+<p>export LC_CTYPE=en_US.UTF-8</p>
+
+<p>export GTK_IM_MODULE=fcitx #这两行用来设定使用fcitx作为默认输入法</p>
+<p>export QT_IM_MODULE=fcitx</p>
+
+<p>fcitx &     #在后台运行fcitx</p>
+<p>pcmanfm-qt --desktop &         #使用pcmanfm-qt来管理壁纸和桌面图标</p>
+<p>compton &           #在后台运行compton</p>
+<p>tint2 &         #在后台运行tint2</p>
+<p>openbox         #在前台启动openbox</p>
+</div>
+
+<h3>2-2启动openbox</h3>
+<p>在TTY界面输入：</p>
+<div class="box">
+startx
+</div>
+
+<h3>效果图<h3>
+
+<img src="image2/xgt1.png" alt="图裂了" width="68%" height="50%">
+
+<h2>3-利用显示管理器启动openbox</h2>
+
+<p>如果你已经有了一个显示管理器，在安装了openbox之后，你就会看到openbox的选项了，但你进入了之后只会启动窗口管理器，所以是一片黑乎乎的。因此我们需要做一些配置。</p>
+
+<h3>3-1为openbox添加套件</h3>
+
+<p><b>首先打开显示管理器的配置文件</b></p>
+
+<div class="box">vim /usr/share/xsessions/openbox.desktop</div>
+
+<p><b>打开文件我们可以看到exec选项是指向/usr/bin/openbox-session的</b></p>
+
+<p><b>去编辑/usr/bin/openbox-session</b></p>
+
+<div class="box">vim /usr/bin/openbox-session</div>
+
+<p><b>如果是只读，就将权限改为可读写</b></p>
+
+<div class="box">chmod +777 /usr/bin/openbox-session</div>
+<br>
+
+<div class="box-waring">这里使用了777，也就是任何人可读可写，其他的系统重要文件千万不要这样。</div>
+
+<p><b>之后将/usr/bin/openbox-session改为这样</b></p>
+
+<div class="box">
+<p>#!/bin/sh<br>
+
+if test -n "$1"; then<br>
+    echo "Syntax: openbox-session"<br>
+    echo<br>
+    echo "See the openbox-session(1) manpage for help."<br>
+  exit<br>
+fi<br>
+
+fcitx &     <br>
+pcmanfm-qt --desktop &       <br>
+compton &          <br>
+tint2 &         <br>
+openbox<br>
+</p>
+</div>
+<p><b>接下来从显示管理器进入openbox就可以看到我们配置好的桌面了</b></p>
+
+<h2>4-openbox配置</h2>
+<p>因为Arch的<a href="https://wiki.archlinux.org/index.php/Openbox">Openbox</a>条目提供了十分详细的配置方法，这里就不再赘述了。</p>
+
+
+<h2>5-试试其他搭配？<h2>
+<p>openbox的可配置十分强大，我们可以自由更换各种组件而不会出错。我这里推荐几个方案。更换组件之后只需要更改随openbox启动的组件名称即可。</p><br>
+
+<ul>
+<li><p>openbox+compiz+avant-window-navigator（多多的特效）</p></li><br>
+<li><p>openbox+xfce4-panel(配置非常简单）</p></li><br>
+<li><p>openbox+gnome-panel（GNOME2风格）</p></li><br>
+</ul>
+
+
+<!-- 来必力City版安装代码 -->
+<div id="lv-container" data-id="city" data-uid="MTAyMC80NDc5Ni8yMTMxNw==">
+<script type="text/javascript">
+    (function(d, s) {
+        var j, e = d.getElementsByTagName(s)[0];
+
+        if (typeof LivereTower === 'function') { return; }
+
+        j = d.createElement(s);
+        j.src = 'https://cdn-city.livere.com/js/embed.dist.js';
+        j.async = true;
+
+        e.parentNode.insertBefore(j, e);
+    })(document, 'script');
+</script>
+<noscript>为正常使用来必力评论功能请激活JavaScript</noscript>
+</div>
+<!-- City版安装代码已完成 -->
+
+
+
+<!-- 内容背景结尾 -->
+</div>
+
+</body>
+</html>
+
+    
+

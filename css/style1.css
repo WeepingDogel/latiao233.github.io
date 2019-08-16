@@ -1,0 +1,176 @@
+#标题栏{
+    background-color: rgb(59, 58, 58);
+    display: -webkit-flex;
+    display: flex;
+    top: 0px;
+    width: 15%;
+    float: left;
+    left: 0%;
+    height:8%;
+    position: fixed;
+}
+#侧边栏{
+    background-color:rgb(59, 58, 58);
+    display: -webkit-flex;
+    display: flex;
+    float: left;
+    width: 15%;
+    height:100%;
+    left: 0px;
+    top: 8%;
+    margin:0;
+    border:0px;
+    position: fixed;
+}
+#菜单颜色{
+    width: 15%;
+    position :fixed;
+    list-style-type:none;
+    margin:0;
+    padding:0;
+    background-color:rgb(59, 58, 58);
+    position: fixed;
+    overflow:auto;
+}
+#菜单项{
+    padding:8px 16px;
+    display: block;
+    background-color:rgb(59, 58, 58);
+    text-decoration: none;
+    text-align: left;
+    white-space: pre;
+    color:white;
+    transition: background 400ms;
+}
+#菜单项:hover,菜单项:active{
+    background-color:white;
+    color:black;
+}
+
+#底栏{
+    background-color: rgb(59, 58, 58);
+    width: 100%;
+    bottom: 0px;
+    height: 3%;
+    position: relative;
+    color: white;
+    text-align: center;
+}
+#内容背景{
+    position: absolute;
+    width: 60%;
+    height: auto;
+    left: 18%;
+    background: white;
+    border: 20px solid white;
+    text-align: left;
+}
+.文章列表{    
+    background-color: white;
+    position: relative;
+    height: auto;
+    top: 40px;
+    left: 3%;
+    width: 85%;
+    margin-top: 25px;
+    transition: border-left 0.5s, box-shadow 1s;
+    float: left;
+    padding: 5px;
+    border: 0px 0px 30px solid white;
+    box-shadow: 5px 5px 20px #e0dbdb;
+}
+.文章列表:hover{
+    border-left: 8px solid black;
+    box-shadow: 8px 8px 30px rgba(0, 0, 0, 0.479);
+}
+.文章图片{
+    float: left;
+    left: 5%;
+}
+.文章标题{
+    font-size: 140%;
+    text-decoration: none;
+    color: black;
+}
+.日期{
+    float: right;
+    margin-top:-3px;
+}
+div.box
+  {
+  background-color: white;
+  width: 80%;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  border-left: 4px solid black;
+  border-right: 1px solid black;
+  padding:10px;
+  margin:0px;
+}
+div.box-waring
+  {
+    background: white;
+    width:80%;
+    border-top: 1px solid rgb(240, 154, 154);
+    border-bottom: 1px solid rgb(240, 154, 154);
+    border-left: 4px solid rgb(240, 154, 154);
+    border-right: 1px solid rgb(240, 154, 154);
+    padding:8px;
+    margin:0px;
+}
+div.文章边线{
+    background-color: white;
+    width: 80%;
+    border-bottom: 1px solid black;
+}
+#右对齐菜单项{
+    display:block;
+    padding: 8px 16px;
+    text-decoration: none;
+    color:white;
+    transition: background 300ms;
+}
+#右对齐菜单项:hover{
+    background-color: white;
+    color: black;
+}
+@media screen and (max-width: 920px)
+{
+    #侧边栏{
+        top: 0px;
+        height: 6%;
+        width: 100%;
+        z-index: 1;
+    }
+    #菜单颜色{
+        float: left;
+        width: 100%;
+        height: 6%;
+    }
+    #菜单项{
+        float: left;
+        padding: 1px 6px;
+    }
+    #标题栏{
+        display: none;
+    }
+    #内容背景{
+        width: 100%;
+        left: 0px;
+        padding: 1% -1%;
+        border-left: 0px;
+        border-right: 0px;
+    }
+    #右对齐菜单项{
+        float: right;
+        padding: 1px 6px;
+    }
+    .文章列表{
+        width: 100%;
+        border-left: 4px solid black;
+        border-top: 0px;
+        left: 1%;
+    }
+}
+
+
