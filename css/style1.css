@@ -37,9 +37,10 @@
     display: block;
     background-color:rgb(59, 58, 58);
     text-decoration: none;
-    text-align: left;
+    text-align: center;
     white-space: pre;
     color:white;
+    padding: 16px 8px;
     transition: background 400ms;
 }
 #菜单项:hover,菜单项:active{
@@ -125,10 +126,11 @@ div.文章边线{
 }
 #右对齐菜单项{
     display:block;
-    padding: 8px 16px;
+    padding: 16px 8px;
     text-decoration: none;
     color:white;
     transition: background 300ms;
+    text-align: center;
 }
 #右对齐菜单项:hover{
     background-color: white;
