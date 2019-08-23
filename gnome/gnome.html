@@ -1,14 +1,14 @@
 <!DOCTYPE html>
-<html>
+<html style="height: 100%;">
 <head>
     <meta charset="utf-8">
-    <script src="../js/js1.js"></script>
+    <script src="../js/gnome.js"></script>
     <style>
         #body背景{
             background-image: url(image/bj.jpg); 
             z-index: -1;
+            height: auto;
         }
-
         #顶栏{
             position: absolute;
             background: rgb(124, 124, 124);
@@ -29,6 +29,7 @@
             color: white;
             padding-top: 3px;
             padding-bottom: 3px;
+            margin-top: 1px;
             text-align: left;
             text-indent:3px;
             opacity: 0.7;
@@ -56,17 +57,18 @@
         }
         #窗口1{
             background-color: rgb(241, 241, 241);
-            float:inherit;
-            height: 800px;
-            width: 100.9%;
-            margin-top: 27px;
+            float:left;
+            height: 1000px;
+            width: 100%;
+            border-right: 16px solid rgb(241, 241, 241);
+            margin-top: 19px;
             margin-left: -8px;
-            margin-right: -8px;
+            margin-bottom: -8px;
             display: none;
             z-index: 1;
         }
         .居中按钮1{
-            margin-left: 46%;
+            margin-left: 46.5%;
             margin-top: -1px;
         }
         .居中按钮1-ul{
@@ -107,6 +109,7 @@
         #窗口1按钮{
             float: left;
             position: absolute;
+            resize: none;
             width: 100px;
             height:100px;
             background-color: black;
@@ -123,15 +126,56 @@
             background-color:white;
             color:black;
         }
+        #顶栏关闭按钮{
+            background-color: rgba(0, 0, 0, 0);
+            display: block;
+            position: absolute;
+            border: 0px;
+            float: left;
+            color: white;
+            padding-top: 4px;
+            padding-bottom: 3px;
+            margin-top: 1px;
+            text-align: left;
+            text-indent:3px;
+            opacity: 0.7;
+            z-index: 1;
+            transition: background-color 0.5s,color 0.5s;
+            display: none;
+        }
+        #顶栏关闭按钮:hover{
+            background-color: white;
+            color: black;
+        }
+        #右侧菜单下拉{
+            background-color: rgb(112, 112, 112);
+            color: white;
+            position: absolute;
+            width: 200px;
+            height: 200px;
+            float: right;
+            right: 0px;
+            top: 27px;
+            padding: 8px;
+            border-radius: 6px;
+            display: none;
+        }
+
     </style>
 </head>
 <body id="body背景" >
 <div id="顶栏">
     <button class="左侧菜单" onclick="打开概览()">活动</button>
+    <button id="顶栏关闭按钮" onclick="顶栏关闭按钮js()">关闭</button>
 
     <p id="顶栏时间">11:11:11</p>
-    <img id="右侧菜单" src="image/right.png">
+    <img id="右侧菜单" onclick="显示右侧下拉菜单()" src="image/right.png">
 </div>
+
+<div id="右侧菜单下拉">
+    <h4>目前还不知道在这里放什么</h4>
+</div>
+
 
 <div id="窗口1">
     <div class="标题栏">      
@@ -147,7 +191,9 @@
 
 <div id="概览">
     <button id="窗口1按钮" onclick="窗口1开()" >测试</button>
+
 </div>
+
 
 </body>
 </html>
