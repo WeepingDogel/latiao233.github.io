@@ -4,32 +4,30 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <link rel="stylesheet" type="text/css" href="../css/style1.css"
-  <script src="../js/index.js"></script>
-
-
+  <link rel="stylesheet" type="text/css" href="../css/style1.css">
+  <script src="../js/index.js" charset="UTF-8" ></script>
 </head>
 
-<body>
+<body  onscroll="滚动进度()">
 
 <div id="总背景">
 
-<div id="侧边栏"> 
-    <div id="标题栏" onclick="点击回主页()">
-        <h1>辣条的博客</h1>
-    </div>
-<ul id="菜单颜色">
-  <li><a id="菜单项" href="../index.html">Linux</a></li>
-  <li><a id="菜单项" href="#杂谈">杂谈</a></li>
-  <li><a id="菜单项" href="#其他">其他</a></li>
-  <li><a id="菜单项" href="GIMP/简易的入门教程.html">GIMP</a></li>
-  <li><a id="菜单项" href="#关于">关于</a></li>
-</ul>
-</div>
+  <div id="侧边栏"> 
+      <div id="标题栏" onclick="主页()">
+          <h1>辣条的博客</h1>
+      </div>
+    <ul id="菜单颜色">
+      <li><a id="菜单项" href="../index.html">Linux</a></li>
+      <li><a id="菜单项" href="#杂谈">杂谈</a></li>
+      <li><a id="菜单项" href="#其他">其他</a></li>
+      <li><a id="菜单项" href="GIMP/简易的入门教程.html">GIMP</a></li>
+      <li><a id="菜单项" href="#关于">关于</a></li>
+    </ul>
+  </div>
 
   <div id="内容背景">
   <h2>桌面环境的概念</h2>
-  <p>在开始之前，你需要了解一下“桌面环境是什么”。简单来说，桌面环境其实就是一套软件，一般由：窗口管理器、面板、合成器等等组成，而openbox只是一个**窗口管理器**，窗口管理器只能管理窗口的状态“开启，关闭”。因此我们需要基于openbox并集成其他软件来打造自己的桌面环境。本教程主要面向于Arch系发行版。</p>
+  <p>在开始之前，你需要了解一下“桌面环境是什么”。简单来说，桌面环境其实就是一套软件，一般由：窗口管理器、面板、合成器等等组成，而openbox只是一个窗口管理器，窗口管理器只能管理窗口的状态“开启，关闭等等状态”。因此我们需要基于openbox并集成其他软件来打造自己的桌面环境。本教程主要面向于Arch系发行版。</p>
 
   <h2>为什么要选择openbox</h2>
 
@@ -45,11 +43,11 @@
   <li>compton</li>
   <li>oblogout</li>
 
-  <p><b>openbox:</b>这里我们使用openbox作为窗口管理器。</p><br>
+  <p><b>openbox:</b>这里我们使用openbox作为窗口管理器。</p>
 
   <p><b>xorg-xinit:</b>跳过显示管理器，直接用startx来手动启动openbox，用这种方法登录图形界面可以获得最佳的启动速度。</p>
 
-  <p><b>lightdm：</b>轻量化的显示管理器，如果你需要还需要其他桌面环境，使用lightdm可以很方便的切换，</p>
+  <p><b>lightdm：</b>轻量化的显示管理器，如果你还需要其他桌面环境，使用lightdm可以很方便的切换，</p>
 
   <p><b>tint2:</b>十分轻量且可配置性极高的面板，内存占用仅仅只有100m左右，并且几乎不占用CPU。</p>
 
@@ -70,7 +68,7 @@
   <p><b>由于volti是AUR应用，所以请去AUR下载安装</b></p>
 
 
-  <h2>2-手动启动桌面环境<h2>
+  <h2>2-手动启动桌面环境<h2><br>
   <p>如果你不需要频繁切换其他的桌面环境，那么就用手动的方法来进入openbox吧，可以跳过显示管理器直接进入桌面环境，十分快速。</p>
 
   <h3> 2-1编写.xinitrc<h3>
@@ -190,10 +188,14 @@
   <!-- 内容背景结尾 -->
   </div>
 
-  <div id="回到顶部">
-    <p id="xxx">1</p>
+  <div id="回到顶部定位">
+    <div id="回到顶部" onclick="点击回顶部()"></div>
+    <div id="进度">
+      <p id="进度文本">1</p>
+    </div>
   </div>
   
+
   <div id="底栏">
     <p>辣条的博客@辣条</p>
   </div> 

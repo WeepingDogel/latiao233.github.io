@@ -10,12 +10,12 @@
 
 </head>
 
-<body>
+<body onscroll="滚动进度()">
 
 <div id="总背景">
 
         <div id="侧边栏"> 
-            <div id="标题栏" onclick="点击回主页()">
+            <div id="标题栏" onclick="主页()">
                     <h1>辣条的博客</h1>
                 </div>
         <ul id="菜单颜色">
@@ -172,6 +172,12 @@
             <!-- City版安装代码已完成 -->
     </div>
 
+    <div id="回到顶部定位">
+        <div id="回到顶部" onclick="点击回顶部()"></div>
+        <div id="进度">
+          <p id="进度文本">1</p>
+        </div>
+      </div>
 
     <div id="底栏">
         <p>辣条的博客@辣条</p>
