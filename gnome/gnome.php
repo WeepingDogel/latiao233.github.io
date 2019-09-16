@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html style="height: 100%;">
+<head>
+    <meta charset="utf-8">
+    <script src="../js/gnome.js"></script>
+    <link rel="stylesheet" type="text/css" href="./CSS/css1.css">
+</head>
+<body id="body背景" >
+<div id="顶栏">
+    <button class="左侧菜单" onclick="打开概览()">活动</button>
+    <button id="顶栏关闭按钮" onclick="顶栏关闭按钮js()">关闭</button>
+    <p id="顶栏时间">11:11:11</p>
+    <img id="右侧菜单" onclick="显示右侧下拉菜单()" src="image/right.png">
+</div>
+
+<div id="右侧菜单下拉">
+    <form  name="myForm" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>"> onsubmit="return 验证输入()" method="POST">
+        <p>帐号:</p><input class="输入" type="text" name="fname"><br>
+        <p></p><br>
+        <p>密码:</p><input class="输入" type="password" name="password">
+        <input id="确认按钮" type="submit" value="登录">
+    </form>
+    <button id="注册" onclick="登录注册切换()">注册</button>
+</div>
+
+<div id="右侧菜单下拉-注册">
+    <form  name="zhuce" action="#ff" method="POST">
+        <p>帐号:</p><input class="输入" type="text" name="name"><br>
+        <p></p><br>
+        <p>密码:</p><input class="输入" type="password" name="password">
+        <input id="注册按钮" type="submit" value="确认注册">
+    </form>
+    <button id="返回登录" onclick="去登录()">去登录</button>
+</div>
+
+<div id="窗口1">
+    <div class="标题栏"></div>
+    <div class="居中按钮1">
+        <ul class="居中按钮1-ul">
+            <li class="居中按钮1-li"><a class="居中按钮1-a" href="#小玩意">小玩意</a></li>
+            <li class="居中按钮1-li"><a class="居中按钮1-a" style="border-radius: 0px 5px 5px 0px;" href="#备用">备用</a></li>
+        </ul>
+        <h1 style="position: absolute;top: 100px;left: 30px;">这只是一个DEMO，没有任何功能</h1>
+    </div>
+</div>
+
+<div id="概览">
+    <button id="窗口1按钮" onclick="窗口1开()" >测试</button>
+</div>
+
+</body>
+</html>

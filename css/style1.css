@@ -10,6 +10,8 @@
     position: fixed;
     z-index: 1;
     display: block;
+    animation: x1 1s;
+    -webkit-animation:  x1 1s;
 }
 #侧边栏{
     background-color:rgb(59, 58, 58);
@@ -20,6 +22,12 @@
     height:100vh;
     position: fixed;
     display: block;
+    animation: x1 1s;
+    -webkit-animation:  x1 1s;
+}
+@keyframes x1 {
+    0%{width: 0%;}
+    100%{width: 15%;}
 }
 #菜单颜色{
     width: 15%;
@@ -30,6 +38,8 @@
     padding:0;
     background-color:rgb(59, 58, 58);
     overflow:auto;
+    animation: x1 1s;
+    -webkit-animation:  x1 1s;
 }
 #菜单项{
     padding:8px 16px;
@@ -46,7 +56,6 @@
     background-color:white;
     color:black;
 }
-
 #底栏{
     background-color: rgb(59, 58, 58);
     width: 100%;
@@ -73,6 +82,12 @@
     display: block;
     margin: -8px;
     opacity: 1;
+    animation: x2 1s;
+    -webkit-animation:  x2 1s;
+}
+@keyframes x2 {
+    0%{margin-top: 80px;}
+    100%{margin-top: 0px;}
 }
 #进度{
     float: initial;
@@ -142,6 +157,11 @@
     font-size: 140%;
     text-decoration: none;
     color: black;
+    transition: color 0.5s;
+    -webkit-transition: color 0.5s;
+}
+.文章标题:hover{
+    color: rgb(117, 198, 251);
 }
 .日期{
     float: right;
@@ -150,7 +170,7 @@
 div.box
   {
   background-color: white;
-  width: 80%;
+  width: 100%;
   border-top: 1px solid black;
   border-bottom: 1px solid black;
   border-left: 4px solid black;
@@ -161,12 +181,12 @@ div.box
 div.box-waring
   {
     background: white;
-    width:80%;
+    width:100%;
     border-top: 1px solid rgb(240, 154, 154);
     border-bottom: 1px solid rgb(240, 154, 154);
     border-left: 4px solid rgb(240, 154, 154);
     border-right: 1px solid rgb(240, 154, 154);
-    padding:8px;
+    padding:10px;
     margin:0px;
 }
 div.文章边线{
@@ -194,22 +214,59 @@ div.文章边线{
     }
     #侧边栏{
         top: 0px;
-        height: 8%;
+        height: 50px;
         width: 100%;
         z-index: 1;
+        animation: s1 1s;
+        -webkit-animation: s1 1s;
+    }
+    @keyframes s1 {
+        0%{height: 0%;}
+        100%{height: 50px;}
     }
     #菜单颜色{
-        top: 0px;
+        display: none;
+        top: 50px;
         float: left;
         width: 100%;
-        height: 8%;
+        height: auto;
+        animation: none;
+        -webkit-animation: none;
     }
     #菜单项{
-        float: left;
-        padding: 3px 6px;
+        font-size: 16px;
     }
     #标题栏{
-        display: none;
+        animation: none;
+        background-color: transparent;
+        font-size: 12px;
+        float: left;
+        width: auto;
+        height: auto;
+        position: relative;
+        top: 0px;
+        left: 30vw;
+        margin-top: -5px;
+        padding: 0;
+    }
+    #显示菜单{
+        background-color: rgb(59, 58, 58);
+        color: white;
+        border-top: 3px solid white;
+        border-bottom: 3px solid white;
+        position: relative;
+        height: 10px;
+        width: 23px;
+        float: left;
+        top: 17px;
+        left: 10px;
+    }
+    #横杠{
+        height: 0px;
+        width: 23px;
+        border-bottom: 3px solid white;
+        position: relative;
+        top: 3.5px;
     }
     #内容背景{
         width: 95%;
@@ -217,19 +274,44 @@ div.文章边线{
         left: 0px;
         padding-left: 5%;
         padding-right: 5%;
+        margin-top: 8%;
+        animation: s2 1s;
+        -webkit-animation: s2 1s;
     }
-    #右对齐菜单项{
-        float: right;
-        padding: 3px 6px;
+    @keyframes s2 {
+        0%{margin-top: 25%;}
+        100%{margin-top: 8%;}
     }
     #底栏{
         display: none;
     }
     .文章列表{
         width: 100%;
-        border-left: 4px solid black;
-        border-top: 0px;
-        left: 1%;
+        border-bottom:  1px solid black;
+        box-shadow: 0px 0px 0px 0px;
+        left: 0;
+    }
+    .文章列表:hover{
+        box-shadow: 0px 0px 0px 0px;
+        border-left: 0;
+    }
+    .文章图片{
+        display: none;
+    }
+    .文章标题{
+        text-align: center;
+    }
+    .日期{
+        display: none;
+    }
+    #回到顶部定位{
+        right: 1vw;
+    }
+    div.box{
+        width: 95%;
+    }
+    div.box-waring{
+        width: 95%;
     }
 }
 

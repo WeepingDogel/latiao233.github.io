@@ -23,3 +23,14 @@ function 点击回顶部(){
     document.body.scrollTop = 0;
     document.documentElement.scrollTop = 0;  
 }
+
+function 打开菜单(){
+    var menu1 = document.getElementById("菜单颜色").style.display
+    if(menu1 == "none") {
+        document.getElementById("菜单颜色").style.display ='block';
+        console.log("ffff")
+    }
+    else{
+        document.getElementById("菜单颜色").style.display ='none';
+    }
+}

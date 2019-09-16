@@ -34,8 +34,30 @@ function 顶栏关闭按钮js() {
 }
 
 function 显示右侧下拉菜单(){
+    var display1 = document.getElementById("右侧菜单下拉").style.display   //获取是否显示的状态信息
+    var display2 = document.getElementById("右侧菜单下拉-注册").style.display
 
+    if(display1 == "block"){
+        document.getElementById("右侧菜单下拉").style.display='none';
+    } 
+    else{
 
+        if(display2 == "block") {
+            document.getElementById("右侧菜单下拉-注册").style.display='none';
+        }
+        else{
+            document.getElementById("右侧菜单下拉").style.display='block';
+        }
+
+    }
 }
 
+function 登录注册切换(){
+    document.getElementById("右侧菜单下拉").style.display='none';
+    document.getElementById("右侧菜单下拉-注册").style.display='block';
+}
 
+function 去登录() {
+    document.getElementById("右侧菜单下拉-注册").style.display='none';
+    document.getElementById("右侧菜单下拉").style.display='block';
+}
