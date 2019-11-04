@@ -13,14 +13,14 @@ function 打开概览() {
 function 窗口1开(){
     document.getElementById("窗口1").style.display='block';         //单机测试按钮显示窗口1
     document.getElementById("概览").style.display='none';          //概览页面隐藏
-    document.getElementById("body背景").style.backgroundImage="url(image/bj.jpg)";      //背景切换回原版
+    document.getElementById("body背景").style.backgroundImage="url(image/bj.webp)";      //背景切换回原版
     window1 = 0;
 }
 
 function 顶栏关闭按钮js() {
     if(window1==1){
         document.getElementById("概览").style.display='none';
-        document.getElementById("body背景").style.backgroundImage="url(image/bj.jpg)";
+        document.getElementById("body背景").style.backgroundImage="url(image/bj.webp)";
         document.getElementById("顶栏关闭按钮").style.display='none'; 
         var dbottom1 = document.getElementsByClassName("左侧菜单");
         dbottom1[0].style.display='block';

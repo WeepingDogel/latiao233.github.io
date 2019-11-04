@@ -1,0 +1,56 @@
+#内容{
+    position: relative;
+    float: right;
+    top: 50px;
+    margin-right: 200px;
+    padding: 55px;
+    width: 50%;
+    height: 1000px;
+    background-color: white;
+    color: rgba(0, 0, 0, 0.555);
+    box-shadow: 1px 5px 5px 8px rgba(0, 0, 0, 0.15);
+}
+#侧边栏{
+    position: relative;
+    float: left;
+    width: 300px;
+    height: 1000px;
+    border-right: 2px solid rgba(0, 0, 0, 0.205);
+    border-right-style: dashed;
+}
+#标题{
+    position: fixed;
+    top: 30px;
+    left: 50px;
+    background-color: rgb(95, 224, 95);
+    width: 200px;
+    height: 80px;
+    border-radius: 15px;
+}
+#标题字体{
+    margin-top: 13px;
+    color: white;
+    text-align: center;
+    font-size: 30px;
+}
+#细字体{
+    font-size: 30px;
+    color: rgba(0, 0, 0, 0.555);
+    text-align: center;
+    font:120 3em "Helvetica Neue", "Open Sans", sans-serif;
+}
+#文章标题{
+    text-align: center;
+    color: rgba(0, 0, 0, 0.555);
+}
+#文章描述{
+    text-align: center;
+    margin-top: -15px;
+}
+#文章{
+    margin-left: 35px;
+    margin-right: 35px;
+}
+#sj{
+    text-indent:2em;
+}

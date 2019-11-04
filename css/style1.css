@@ -15,19 +15,26 @@
 }
 #侧边栏{
     background-color:rgb(59, 58, 58);
-    float: left;
     left: 0;
     width: 15%;
+    height: 100%;
     top: 0px;
-    height:100vh;
-    position: fixed;
-    display: block;
+    position: relative;
     animation: x1 1s;
     -webkit-animation:  x1 1s;
 }
 @keyframes x1 {
     0%{width: 0%;}
     100%{width: 15%;}
+}
+#侧边栏颜色遮盖{
+    position: fixed;
+    float: left;
+    height: 100vh;
+    width: 15%;
+    background-color: rgb(59, 58, 58);
+    animation: x1 1s;
+    -webkit-animation:  x1 1s;
 }
 #菜单颜色{
     width: 15%;
@@ -66,21 +73,17 @@
     float: inherit;
 }
 #总背景{
-    min-height: 100vh;
-    height: auto;
     width: 100.8%;
-    float: left;
+    min-height: 100vh;
     margin: -8px;
 }
 #内容背景{
-    float: left;
+    position: relative;
+    left: 20%;
     width: 70%;
-    min-height: 100vh;
-    padding-left: 20%;
     background-color: white;
     text-align: left;
     display: block;
-    margin: -8px;
     opacity: 1;
     animation: x2 1s;
     -webkit-animation:  x2 1s;
